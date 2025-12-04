@@ -1,17 +1,11 @@
 import time
 
-with open("input.txt", "r") as file:
-	arrey = [line.strip() for line in file]
-
 def count_v1(data):
 	clock = 50
 	res = 0
 	for d in data:
-		if (d[0] == 'L'):
-			step = -int(d[1:])
-		else:
-			step = int(d[1:])
-		clock += step
+		clock += int(d[1:]) if (d[0] == 'R') else int(d[1:])
+		clock %= 100
 		if (clock == 0):
 			res += 1
 	return (res)
@@ -37,7 +31,11 @@ def count_v2(data):
 			res += clock // 100
 			if clock != 100:
 				clock %= 100
-	return res	
+	return res
+
+input_file = "input.txt"
+with open(input_file, "r") as file:
+	arrey = [line.strip() for line in file]
 
 s = time.time()
 print(f"pt1 = {count_v1(arrey)} in {round(time.time() - s, 5)}s")

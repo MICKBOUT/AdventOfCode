@@ -1,5 +1,3 @@
-#include <fcntl.h>
-#include <string.h>
 #include "get_next_line.h"
 
 long unsigned int	ft_biggg(char *line)
@@ -35,6 +33,7 @@ int main(int ac, char **av) {
 	long unsigned int res = 0;
 	while ((line = get_next_line(fd))) {
 		res += ft_biggg(line);
+		free(line);
 	}
 	close(fd);
 	printf("res = %lu", res);

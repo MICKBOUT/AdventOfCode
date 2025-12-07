@@ -2,10 +2,6 @@ import time
 
 def add_mirror_pt1(start, end):
 	res = 0
-	left = str(start)
-	if (len(left) % 2) == 0:
-		left = left[:len(left)//2]
-	start = int(left)
 	for nb in range(start, end + 1):
 		s = str(nb)
 		m = len(s) >> 1

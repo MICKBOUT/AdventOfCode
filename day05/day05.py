@@ -3,7 +3,7 @@ import time
 with open("input.txt", "r") as file:
 	data = [line.strip() for line in file]
 
-def day05_v1(data):
+def day05_pt1(data):
 	res = 0
 	ranges = sorted([tuple(map(int, line.split('-'))) for line in data[:data.index("")]], key= lambda x: x[0])
 	for nb in tuple(map(int, data[data.index("") + 1:])):
@@ -15,7 +15,7 @@ def day05_v1(data):
 				break
 	return (res)
 
-def day05_v2(data):
+def day05_pt2(data):
 	res = 0
 	ranges = sorted([tuple(map(int, line.split('-'))) for line in data[:data.index("")]], key= lambda x: x[0])
 	start, end = ranges[0]
@@ -28,6 +28,6 @@ def day05_v2(data):
 	return res + end - start + 1
 
 s = time.time()
-print(f"{day05_v1(data)} in {time.time() - s}s")
+print(f"{day05_pt1(data)} in {time.time() - s}s")
 s = time.time()
-print(f"{day05_v2(data)} in {time.time() - s}s")
+print(f"{day05_pt2(data)} in {time.time() - s}s")

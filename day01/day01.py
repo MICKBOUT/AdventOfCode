@@ -1,6 +1,6 @@
 import time
 
-def count_v1(data):
+def count_pt1(data):
 	clock = 50
 	res = 0
 	for d in data:
@@ -10,7 +10,7 @@ def count_v1(data):
 			res += 1
 	return (res)
 
-def count_v2(data):
+def count_pt2(data):
 	clock = 50
 	res = 0
 	for d in data:
@@ -38,6 +38,6 @@ with open(input_file, "r") as file:
 	arrey = [line.strip() for line in file]
 
 s = time.time()
-print(f"pt1 = {count_v1(arrey)} in {round(time.time() - s, 5)}s")
+print(f"pt1 = {count_pt1(arrey)} in {round(time.time() - s, 5)}s")
 s = time.time()
-print(f"pt2 = {count_v2(arrey)} in {round(time.time() - s, 5)}s")
+print(f"pt2 = {count_pt2(arrey)} in {round(time.time() - s, 5)}s")

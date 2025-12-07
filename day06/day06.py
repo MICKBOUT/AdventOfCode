@@ -12,7 +12,7 @@ with open(input_file, "r") as file:
 	for i in range(len(arrey) - 1):
 		arrey[i] = list(map(int, arrey[i]))
 
-def day06_v2(matrix):
+def day06_pt2(matrix):
 	m = len(matrix)
 	n = len(matrix[0])
 	i = 0
@@ -33,9 +33,9 @@ def day06_v2(matrix):
 		i += j + 1
 	return res
 
-def day06_v1(arrey): return sum([sum([arrey[x][i] for x in range(len(arrey) - 1)]) if arrey[-1][i] == '+' else prod([arrey[x][i] for x in range(len(arrey) - 1)]) for i in range(len(arrey[0]))])
+def day06_pt1(arrey): return sum([sum([arrey[x][i] for x in range(len(arrey) - 1)]) if arrey[-1][i] == '+' else prod([arrey[x][i] for x in range(len(arrey) - 1)]) for i in range(len(arrey[0]))])
 
 s = time.time()
-print(f"{day06_v1(arrey)} in {round(time.time() - s, 5)}s")
+print(f"{day06_pt1(arrey)} in {round(time.time() - s, 5)}s")
 s = time.time()
-print(f"{day06_v2(matrix)} in {round(time.time() - s, 5)}s")
+print(f"{day06_pt2(matrix)} in {round(time.time() - s, 5)}s")

@@ -3,35 +3,31 @@ import time
 with open(input_file, "r") as file:
 	arrey = [tuple(map(int, line.strip().split(','))) for line in file]
 
-from math import sqrt
+from math import sqrt, dist
 import time
 
 def day08_pt1(arrey):
 	lst = []
 	len_arrey = len(arrey)
-	gp = [x for x in range(len_arrey)]
-	
+	groups_index = [x for x in range(len_arrey)]
 	groups = {x:[x] for x in range(len_arrey)}
-	
 	for i in range(len_arrey - 1):
 		x1, y1, z1 = arrey[i]
 		for j in range(i + 1, len_arrey):
 			x2, y2, z2 = arrey[j]
-			ell = (sqrt((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2), i, j)
+			ell = (dist((x1, y1, z1), (x2, y2, z2)), i, j)
 			lst.append(ell)
 
 	lst.sort(key= lambda x:x[0])
-
-	for i in range(len_arrey):
-		_, p1, p2 = lst[i]
-
-		gp_p1, gp_p2 = gp[p1], gp[p2]
-		if gp_p2 == gp_p1:
+	
+	for _, index_p1, index_p2 in lst[:1000]:
+		gp_p1, gp_p2 = groups_index[index_p1], groups_index[index_p2]
+		if gp_p1 == gp_p2:
 			continue
-		
+		res = [index_p1, index_p2]
 		to_add = groups[gp_p2]
 		for point in to_add:
-			gp[point] = gp_p1
+			groups_index[point] = gp_p1
 			groups[gp_p1].append(point)
 		del groups[gp_p2]
 	
@@ -50,30 +46,26 @@ def day08_pt1(arrey):
 def day08_pt2(arrey):
 	lst = []
 	len_arrey = len(arrey)
-	gp = [x for x in range(len_arrey)] #groups of the points i
-	
+	groups_index = [x for x in range(len_arrey)]
 	groups = {x:[x] for x in range(len_arrey)}
 	
-	#print(gp, groups)
 	for i in range(len_arrey - 1):
 		x1, y1, z1 = arrey[i]
 		for j in range(i + 1, len_arrey):
 			x2, y2, z2 = arrey[j]
-			ell = (sqrt((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2), i, j) #dst, i, j
+			ell = (dist((x1, y1, z1), (x2, y2, z2)), i, j)
 			lst.append(ell)
 
 	lst.sort(key= lambda x:x[0])
 	
-	for dst, p1, p2 in lst:
-		#take all the points in the gp of p2:
-
-		gp_p1, gp_p2 = gp[p1], gp[p2] #groups of the p1 and p2
+	for _, index_p1, index_p2 in lst:
+		gp_p1, gp_p2 = groups_index[index_p1], groups_index[index_p2]
 		if gp_p1 == gp_p2:
 			continue
-		res = [p1, p2]
+		res = [index_p1, index_p2]
 		to_add = groups[gp_p2]
 		for point in to_add:
-			gp[point] = gp_p1
+			groups_index[point] = gp_p1
 			groups[gp_p1].append(point)
 		del groups[gp_p2]
 	

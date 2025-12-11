@@ -6,7 +6,6 @@ with open(input_file, "r") as file:
 	button = [sorted([[int(y) for y in x[1:-1].split(',')] for x in line[1:-1]], key=len, reverse=True) for line in arrey]
 	need = [[int(y) for y in line[-1][1:-1].split(',')] for line in arrey]
 
-from math import ceil
 
 def day10_pt2_line(button_lst, need, i=0, push=0, current=None, best=None):
     if current is None:

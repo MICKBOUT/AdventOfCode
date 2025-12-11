@@ -7,7 +7,7 @@ with open(input_file, "r") as file:
 		dico[key] = set(value[1:].split(" "))
 
 # this way work bc i know the grap is one way whit no comming back
-# and i know that srv is before fft and fft is before dac
+# and i know that svr is before fft and fft is before dac
 
 def day11_pt2(dico, path):
 	seen = {"out"}

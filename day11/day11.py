@@ -28,5 +28,5 @@ def explore(node, goal, dico, seen, new_seen):
 			new_seen.add(node)
 			res += explore(neighbor, goal, dico, seen, new_seen)
 	return res
-
+ 
 print(day11_pt2(dico, ["svr", "fft", "dac", "out"]))
